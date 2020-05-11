@@ -43,3 +43,15 @@ code {
 .nav-link:hover {
   text-decoration: underline;
 }
+
+.list-questions {
+  text-decoration: none;
+}
+
+.header-row {
+  text-decoration: none;
+}
+
+.question-row {
+  text-decoration: none;
+}

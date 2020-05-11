@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
 
 export default function Navigation () {
@@ -11,7 +11,7 @@ export default function Navigation () {
       
       <Navbar.Collapse className='justify-content-end'>
         <Navbar.Text>
-          Signed in as: <strong>Viet{/* {Username} */}</strong> (<a href='#'>sign out</a>)
+          Signed in as: <strong>Viet{/* {Username} */}</strong> (<a href="#">sign out</a>)
         </Navbar.Text>
       </Navbar.Collapse>
     </Navbar>
