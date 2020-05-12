@@ -1,9 +1,10 @@
-import { saveQuestionAnswer } from '../utils/api'
+import { saveQuestionAnswer, saveQuestion } from '../utils/api'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const SAVE_QUESTION = 'SAVE_QUESTION'
 export const SAVE_ANSWER = 'SAVE_ANSWER'
-export const REMOVE_ANSWER = 'REMOVE_ANSWER'
+export const REMOVE_ANSWER = 'REMOVE_ANSWER' // not provided by API in this project -> do nothing
+export const REMOVE_QUESTION = 'REMOVE_QUESTION' // not provided by API in this project -> do nothing
 
 
 export function receiveQuestions (questions) {
@@ -13,13 +14,20 @@ export function receiveQuestions (questions) {
   }
 }
 
-export function saveQuestion (question) {
+export function saveQuestionAction (question) {
   return {
     type: SAVE_QUESTION,
     question,
     // author,
     // optionOneText,
     // optionTwoText,
+  }
+}
+
+export function removeQuestionAction (question) {
+  return {
+    type: REMOVE_QUESTION,
+    question
   }
 }
 
@@ -35,7 +43,6 @@ export function saveAnswer (questionWithAnswer) {
 }
 
 function removeAnswer(questionWithAnswer) {
-  // api doesn't provide in this project  
   return {
     type: REMOVE_ANSWER,
     questionWithAnswer,
@@ -54,6 +61,18 @@ export function handleSaveAnswer(questionWithAnswer) {
         console.warn('error in saving the answer')
         dispatch(removeAnswer(questionWithAnswer))
         alert('Error in saving the answer. Try again!')
+      })
+  }
+}
+
+export function handleSaveQuestion(question) {
+  return (dispatch, getState) => {
+    return saveQuestion(question)
+      .then((result) => dispatch(saveQuestionAction(result)))
+      .catch((e) => {
+        console.warn('error in saving the poll')
+        dispatch(removeQuestionAction(question))
+        alert('Error in saving the poll. Try again!')
       })
   }
 }

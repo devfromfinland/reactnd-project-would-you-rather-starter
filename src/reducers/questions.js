@@ -8,8 +8,14 @@ export default function questions (state = {}, action) {
         ...action.questions
       }
     case SAVE_QUESTION:
+      
+      const { question } = action
+      let newState = {...state, question}
+      console.log('new state = ', newState)
+
       return {
-        ...state, // nothing has been done yet
+        ...state,
+        [question.id]: question,
       }
     case SAVE_ANSWER:
       const { qid, answer, authedUser } = action.questionWithAnswer
