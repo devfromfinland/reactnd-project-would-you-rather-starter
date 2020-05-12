@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { ListGroup } from 'react-bootstrap'
 import defaultProfilePhoto from '../img/tyler.jpg'
+import { connect } from 'react-redux'
+import { handleLogin, setAuthedUser } from '../actions/authedUser'
+import { withRouter } from 'react-router-dom'
 // import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
@@ -9,24 +12,30 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    
+    console.log('redirect to ', this.props.match.url)
   }
 
   onLogin = (e) => {
     e.preventDefault()
-    console.log(e.currentTarget.id)
 
-    // todo: update state authedUser
+    const { dispatch } = this.props
 
-    // todo: redirect to either Dashboard or request URL
-    // console.log('redirect to ', this.props.match.url)
-    // this.setState(() => ({
-    //   redirect: true
-    // }))
+    // update state authedUser
+    dispatch(handleLogin(e.currentTarget.id))
+
+    // todo: redirect to either Dashboard or requested URL
+    const currentURL = this.props.match.url
+    this.props.history.push(currentURL)
+    // (currentURL === '/')
+    //   ? this.props.history.push(`/dashboard`)
+    //   : this.props.history.push(currentURL)
+    
+    console.log('redirect to ', this.props.match.url)
   }
 
   render() {
     const { users } = this.props
+    console.log(this.props)
 
     // if (this.state.redirect === true) {
     //   return <Redirect to={this.props.match.url} />
@@ -49,4 +58,11 @@ class Login extends Component {
   }
 }
 
-export default Login
+function mapStateToProps ({users}) {
+  return {
+    // empty
+    users: Object.values(users)
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(Login))

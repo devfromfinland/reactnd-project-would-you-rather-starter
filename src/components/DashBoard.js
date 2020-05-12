@@ -1,29 +1,40 @@
-import React from 'react'
+import React, { Component } from 'react'
 import ListQuestions from './ListQuestions'
 import { Container, Row, Col } from 'react-bootstrap'
+import { connect } from 'react-redux';
 
-
-function Dashboard(props) {
-  return (
-    <Container>
-      <Row>
-        <Col>
-          <ListQuestions
-            type='answered'
-            questions={props.questions}
-            users={props.users}
-            authedUser={props.authedUser}/>
-        </Col>
-        <Col>
-          <ListQuestions 
-            type='new'
-            questions={props.questions}
-            users={props.users}
-            authedUser={props.authedUser}/>
-        </Col>
-      </Row>
-    </Container>
-  )
+class Dashboard extends Component {
+  render() {
+    console.log('Dashboard', this.props)
+    return (
+      <Container>
+        <Row>
+          <Col>
+            <ListQuestions
+              type='answered'
+              questions={this.props.questions}
+              users={this.props.users}
+              authedUser={this.props.authedUser}/>
+          </Col>
+          <Col>
+            <ListQuestions 
+              type='new'
+              questions={this.props.questions}
+              users={this.props.users}
+              authedUser={this.props.authedUser}/>
+          </Col>
+        </Row>
+      </Container>
+    )
+  }
 }
 
-export default Dashboard
+function mapStateToProps ({users, questions, authedUser}) {
+  return {
+    authedUser,
+    users: Object.values(users),
+    questions: Object.values(questions)
+  }
+}
+
+export default connect(mapStateToProps)(Dashboard)

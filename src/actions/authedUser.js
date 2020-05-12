@@ -6,3 +6,9 @@ export function setAuthedUser (id) {
     id,
   }
 }
+
+export function handleLogin (id) {
+  return (dispatch) => {
+    dispatch(setAuthedUser(id))
+  }
+}
