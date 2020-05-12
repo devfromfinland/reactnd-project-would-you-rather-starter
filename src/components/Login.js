@@ -12,7 +12,7 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    console.log('redirect to ', this.props.match.url)
+    // console.log('redirect to ', this.props.match.url)
   }
 
   onLogin = (e) => {
@@ -30,12 +30,12 @@ class Login extends Component {
     //   ? this.props.history.push(`/dashboard`)
     //   : this.props.history.push(currentURL)
     
-    console.log('redirect to ', this.props.match.url)
+    // console.log('redirect to ', this.props.match.url)
   }
 
   render() {
     const { users } = this.props
-    console.log(this.props)
+    // console.log(this.props)
 
     // if (this.state.redirect === true) {
     //   return <Redirect to={this.props.match.url} />

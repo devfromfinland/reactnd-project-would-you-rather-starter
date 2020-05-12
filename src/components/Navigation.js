@@ -1,21 +1,38 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Navbar } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
+import { handleLogOut } from '../actions/authedUser'
+import { connect } from 'react-redux'
 
-export default function Navigation (props) {
-  let { authedUser } = props
-  return (
-    <Navbar className="justify-content-between mb-5">
-      <Navbar.Collapse>
-        <NavLink to='/' exact className='nav-link' activeClassName='active'>Home</NavLink>
-        <NavLink to='/new' className='nav-link' activeClassName='active'>Post a question</NavLink>
-      </Navbar.Collapse>
-      
-      <Navbar.Collapse className='justify-content-end'>
-        <Navbar.Text>
-          Signed in as: <strong>{authedUser}</strong> (<a href="/something">sign out</a>)
-        </Navbar.Text>
-      </Navbar.Collapse>
-    </Navbar>
-  )
+class Navigation extends Component {
+  onLogOut = (e) => {
+    e.preventDefault()
+    const { dispatch } = this.props
+
+    dispatch(handleLogOut(''))
+  }
+  render() {
+    return (
+      <Navbar className="justify-content-between mb-5">
+        <Navbar.Collapse>
+          <NavLink to='/' exact className='nav-link' activeClassName='active'>Home</NavLink>
+          <NavLink to='/new' className='nav-link' activeClassName='active'>Post a question</NavLink>
+        </Navbar.Collapse>
+        
+        <Navbar.Collapse className='justify-content-end'>
+          <Navbar.Text>
+            Signed in as: <strong>{this.props.authedUser}</strong> (<button className='btn btn-link' onClick={this.onLogOut}>Logout</button>)
+          </Navbar.Text>
+        </Navbar.Collapse>
+      </Navbar>
+    )
+  }
 }
+
+function mapStateToProps({authedUser}) {
+  return {
+    authedUser
+  }
+}
+
+export default connect(mapStateToProps)(Navigation)
