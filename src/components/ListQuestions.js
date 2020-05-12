@@ -18,7 +18,6 @@ class ListQuestions extends Component {
 
   render() {
     const { type, questions, authedUser } = this.props
-    // console.log(this.props)
 
     if (type === 'answered') {
       return (
@@ -30,7 +29,8 @@ class ListQuestions extends Component {
               {type === undefined && <h1>Header</h1>}
             </Col>
           </Row>
-          { questions && questions.filter((item) => this.isAnsweredQuestion(item, authedUser)).map((question) => 
+          { questions.length > 0 && questions
+            .filter((item) => this.isAnsweredQuestion(item, authedUser)).map((question) => 
             <Row className='mb-5' key={question.id}>
               <Col>
                 <Question question={question} type={type}/>
@@ -67,6 +67,7 @@ function mapStateToProps({users, questions, authedUser}) {
     authedUser,
     users: Object.values(users),
     questions: Object.values(questions)
+      .sort((a, b) => b.timestamp - a.timestamp)
   }
 }
 
