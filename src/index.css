@@ -12,10 +12,6 @@ code {
     monospace;
 }
 
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-
 .login-panel {
   max-width: 20rem;
   margin: 2rem auto 0;
