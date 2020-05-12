@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import ListQuestions from './ListQuestions'
 import { Container, Row, Col } from 'react-bootstrap'
 

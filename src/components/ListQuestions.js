@@ -4,10 +4,6 @@ import Question from './Question'
 
 class ListQuestions extends Component {
   isAnsweredQuestion = (question, authedUser) => {
-    let find1 = question.optionOne.votes.find(user => user === authedUser);
-    let find2 = question.optionTwo.votes.find(user => user === authedUser);
-    console.log('find1 = ', find1)
-    console.log('find2 = ', find2)
     if (question.optionOne.votes.length > 0 && question.optionOne.votes.find(user => user === authedUser)) {
       return true
     }
@@ -20,8 +16,8 @@ class ListQuestions extends Component {
   }
 
   render() {
-    const { type, questions, users, authedUser } = this.props
-    console.log(this.props)
+    const { type, questions, authedUser } = this.props
+    // console.log(this.props)
 
     if (type === 'answered') {
       return (

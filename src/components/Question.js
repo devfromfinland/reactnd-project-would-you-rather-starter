@@ -18,13 +18,13 @@ class Question extends Component {
     const { type, question, authedUser } = this.props
     // const { id, author, optionOne, optionTwo, timestamp } = this.props.question
 
-    console.log(question)
+    // console.log(question)
     if (type === 'answered') { // question has been answered, then highlight the answer
       return (
         <div>
           {/* <p>ID: {question.id}</p> */}
           Posted by {' '}
-          <a href='#'>@{question.author}</a>
+          <a href='/something'>@{question.author}</a>
           {' '} on {formatDate(question.timestamp)}
           <ListGroup>
             { question.optionOne.votes.find(user => user === authedUser)
@@ -42,7 +42,7 @@ class Question extends Component {
         <div>
           {/* <p>ID: {question.id}</p> */}
           Posted by {' '}
-          <a href='#'>@{question.author}</a>
+          <a href='/something'>@{question.author}</a>
           {' '} on {formatDate(question.timestamp)}
           <ListGroup>
             <ListGroup.Item action onClick={this.handleChangeOption}>{question.optionOne.text}</ListGroup.Item>
