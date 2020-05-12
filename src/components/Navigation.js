@@ -21,7 +21,7 @@ class Navigation extends Component {
         
         <Navbar.Collapse className='justify-content-end'>
           <Navbar.Text>
-            Signed in as: <strong>{this.props.authedUser}</strong> (<button className='btn btn-link' onClick={this.onLogOut}>Logout</button>)
+            Signed in as: <strong>{this.props.authedUser}</strong> (<div className='btn btn-link' onClick={this.onLogOut}>Logout</div>)
           </Navbar.Text>
         </Navbar.Collapse>
       </Navbar>
