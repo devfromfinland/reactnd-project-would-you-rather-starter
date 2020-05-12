@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { ListGroup } from 'react-bootstrap'
 import defaultProfilePhoto from '../img/tyler.jpg'
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
   state = {
     redirect: false
   }
+
   componentDidMount() {
     
   }
@@ -23,19 +24,6 @@ class Login extends Component {
     //   redirect: true
     // }))
   }
-
-  // sarahedo: {
-  //   id: 'sarahedo',
-  //   name: 'Sarah Edo',
-  //   avatarURL: '../img/tho.jpg',
-  //   answers: {
-  //     "8xf0y6ziyjabvozdd253nd": 'optionOne',
-  //     "6ni6ok3ym7mf1p33lnez": 'optionTwo',
-  //     "am8ehyc8byjqgar0jgpub9": 'optionTwo',
-  //     "loxhs1bqm25b708cmbf3g": 'optionTwo'
-  //   },
-  //   questions: ['8xf0y6ziyjabvozdd253nd', 'am8ehyc8byjqgar0jgpub9']
-  // },
 
   render() {
     const { users } = this.props

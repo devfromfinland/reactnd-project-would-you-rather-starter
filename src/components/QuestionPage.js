@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-export default function QuestionPage () {
-  return (
-    <div>QUESTION PAGE</div>
-  )
+class QuestionPage extends Component {
+  render () {
+    return (
+      <div>QUESTION PAGE</div>
+    )
+  }
 }
+
+export default QuestionPage

@@ -1,8 +1,8 @@
-export const GET_USERS = 'GET_USERS'
+export const RECEIVE_USERS = 'RECEIVE_USERS'
 
 export function getUsers (users) {
   return {
-    type: GET_USERS,
+    type: RECEIVE_USERS,
     users,
   }
 }
