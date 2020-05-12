@@ -10,18 +10,10 @@ class Dashboard extends Component {
       <Container>
         <Row>
           <Col>
-            <ListQuestions
-              type='answered'
-              questions={this.props.questions}
-              users={this.props.users}
-              authedUser={this.props.authedUser}/>
+            <ListQuestions type='answered'/>
           </Col>
           <Col>
-            <ListQuestions 
-              type='new'
-              questions={this.props.questions}
-              users={this.props.users}
-              authedUser={this.props.authedUser}/>
+            <ListQuestions type='new'/>
           </Col>
         </Row>
       </Container>

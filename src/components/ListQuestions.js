@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import Question from './Question'
+import { connect } from 'react-redux'
 
 class ListQuestions extends Component {
   isAnsweredQuestion = (question, authedUser) => {
@@ -32,7 +33,7 @@ class ListQuestions extends Component {
           { questions && questions.filter((item) => this.isAnsweredQuestion(item, authedUser)).map((question) => 
             <Row className='mb-5' key={question.id}>
               <Col>
-                <Question question={question} authedUser={authedUser} type={type}/>
+                <Question question={question} type={type}/>
               </Col>
             </Row>
           )}
@@ -49,7 +50,7 @@ class ListQuestions extends Component {
           { questions && questions.filter((item) => !this.isAnsweredQuestion(item, authedUser)).map((question) => 
             <Row className='mb-5' key={question.id}>
               <Col>
-                <Question question={question} authedUser={authedUser} type={type}/>
+                <Question question={question} type={type}/>
               </Col>
             </Row>
           )}
@@ -61,4 +62,12 @@ class ListQuestions extends Component {
   }
 }
 
-export default ListQuestions
+function mapStateToProps({users, questions, authedUser}) {
+  return {
+    authedUser,
+    users: Object.values(users),
+    questions: Object.values(questions)
+  }
+}
+
+export default connect(mapStateToProps)(ListQuestions)

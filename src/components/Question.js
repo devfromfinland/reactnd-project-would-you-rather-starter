@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import { ListGroup } from 'react-bootstrap'
 import { formatDate } from '../utils/helpers'
+import { connect } from 'react-redux'
 
 class Question extends Component {
   handleChangeOption = (e) => {
     e.preventDefault()
+
+    const { question, authedUser } = this.props
+    
     // do nothing if click on his/her own answer
 
     // change the choice of answered question, or create an answer for a new question
@@ -54,4 +58,11 @@ class Question extends Component {
   }
 }
 
-export default Question
+function mapStateToProps({users, authedUser}) {
+  return {
+    authedUser,
+    users: Object.values(users)
+  }
+}
+
+export default connect(mapStateToProps)(Question)
