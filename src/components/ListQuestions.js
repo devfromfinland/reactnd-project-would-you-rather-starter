@@ -24,9 +24,7 @@ class ListQuestions extends Component {
         <Container className='list-questions'>
           <Row className='header-row mb-4'>
             <Col>
-              {type === 'answered' && <h1>Answered questions</h1>}
-              {type === 'new' && <h1>New questions</h1>}
-              {type === undefined && <h1>Header</h1>}
+              <h3>Your answered questions</h3>
             </Col>
           </Row>
           { questions.length > 0 && questions
@@ -44,7 +42,7 @@ class ListQuestions extends Component {
         <Container className='list-questions'>
           <Row className='header-row mb-4'>
             <Col>
-              <h1>New questions</h1>
+              <h3>Would you rather?</h3>
             </Col>
           </Row>
           { questions && questions.filter((item) => !this.isAnsweredQuestion(item, authedUser)).map((question) => 

@@ -55,3 +55,23 @@ code {
 .question-row {
   text-decoration: none;
 }
+
+.percentage {
+  float: right;
+  font-style: italic;
+  color: orange;
+}
+
+.option-text {
+  float: left;
+}
+
+.list-user {
+  list-style: none;
+  padding-left: 0;
+  color: green;
+}
+
+.option-detail {
+  font-style: italic;
+}

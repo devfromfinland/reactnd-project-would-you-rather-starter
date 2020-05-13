@@ -3,12 +3,13 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import { handleSaveQuestion } from '../actions/questions'
+import { Redirect } from 'react-router-dom'
 
 class NewQuestion extends Component {
   state = {
-    // text: '',
     optionOneText: '',
     optionTwoText: '',
+    toHome: false,
   }
 
   handleSubmit = (e) => {
@@ -19,18 +20,22 @@ class NewQuestion extends Component {
     const question = {author, optionOneText, optionTwoText}
     const { dispatch } = this.props
 
-    // console.log('new poll = ', question)
-
     dispatch(handleSaveQuestion(question))
+
+    this.setState(() => ({
+      toHome: true
+    }))
   }
 
   render() {
+    if (this.state.toHome === true) return <Redirect to='/' />
+    
     return (
       <form onSubmit={this.handleSubmit}>
         <Container className='mt-5 text-center'>
           <Row>
             <Col>
-              <h3>CREATE A POLL</h3>
+              <h3>Would you rather...</h3>
             </Col>
           </Row>
           <Row className='mt-4 mb-3'>

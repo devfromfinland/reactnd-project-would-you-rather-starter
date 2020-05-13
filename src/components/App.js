@@ -33,10 +33,10 @@ class App extends Component {
                 <Route path='/' exact>
                   <Dashboard />
                 </Route>
-                <Route path='/question/:id'>
-                  <QuestionPage />
+                <Route path='/questions/:id' component={QuestionPage}>
+                  {/* <QuestionPage /> */}
                 </Route>
-                <Route path='/new'>
+                <Route path='/add'>
                   <NewQuestion />
                 </Route>
                 {/* <Route path='*'>
