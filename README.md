@@ -21,10 +21,10 @@ npm start
 [x] Can users add new polls?
 [x] Does the leaderboard work correctly and have the desired functionality?
 [x] Is the application navigable?
-[ ] Does the application interact with the backend correctly?
-    (backend's functions doesn't update new data from user)
 [x] Does the code run without errors or warnings?
 [x] Does the store serve as the application’s single source of truth?
 [x] Is application state managed by Redux?
 [x] Does application state update correctly?
 [x] Does the architecture of the application make sense?
+[x] Loading bar
+[ ] Does the application interact with the backend correctly? (backend's functions doesn't update new data from user)

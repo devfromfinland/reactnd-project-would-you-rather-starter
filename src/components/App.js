@@ -29,7 +29,6 @@ class App extends Component {
           <LoadingBar />
           { authedUser === '' && 
             <Fragment>
-              {/* <LoadingBar /> */}
               {this.props.loading
                 ? null
                 : <Route path='*' render={(props) => <Login />} />
@@ -40,7 +39,6 @@ class App extends Component {
           { authedUser !== '' &&
           <Fragment>
             <Navigation authedUser={this.props.authedUser}/>
-            {/* <LoadingBar /> */}
             {this.props.loading
                 ? null
                 : <Switch>
