@@ -27,11 +27,11 @@ class Question extends Component {
   }
 
   render() {
-    const { type, question, authedUser } = this.props
+    const { type, question, authedUser, users } = this.props
     const countOne = question.optionOne.votes.length
     const countTwo = question.optionTwo.votes.length
-    const countOnePercentage = countOne * 100 / (countOne + countTwo)
-    const countTwoPercentage = countTwo * 100 / (countOne + countTwo)
+    const countOnePercentage = (countOne * 100 / (countOne + countTwo)).toFixed(2)
+    const countTwoPercentage = (countTwo * 100 / (countOne + countTwo)).toFixed(2)
 
     let isQuestionPage = false
     if (this.props.match && this.props.match.params.id) {
@@ -42,8 +42,9 @@ class Question extends Component {
       // question has been answered, then highlight the answer
       return (
         <div>
-          Posted by {' '}
-          <a href='/something'>@{question.author}</a>
+          Posted by
+          {' '} <img src={users[question.author].avatarURL} alt='profile-pic' className='small-profile-pic'/>
+          {' '} @{question.author}
           {' '} on {formatDate(question.timestamp)}
           { isQuestionPage === false && 
             <div style={{float: 'right'}}>
@@ -88,10 +89,12 @@ class Question extends Component {
       )
     } else {
       // question has not been answered, then no need to highlight anything
+      
       return (
         <div>
-          Posted by {' '}
-          <a href='/something'>@{question.author}</a>
+          Posted by
+          {' '} <img src={users[question.author].avatarURL} alt='profile-pic' className='small-profile-pic'/>
+          {' '} @{question.author}
           {' '} on {formatDate(question.timestamp)}
           { isQuestionPage === false && 
             <div style={{float: 'right'}}>
@@ -116,7 +119,7 @@ class Question extends Component {
 function mapStateToProps({users, authedUser}, {question}) {
   return {
     authedUser,
-    users: Object.values(users),
+    users,
     question
   }
 }

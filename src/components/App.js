@@ -4,11 +4,12 @@ import Dashboard from './DashBoard'
 import NewQuestion from './NewQuestion'
 import QuestionPage from './QuestionPage'
 import Navigation from './Navigation'
+import LeaderBoard from './LeaderBoard'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import EmptyPage from './EmptyPage'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
-import LeaderBoard from './LeaderBoard'
+
 
 class App extends Component {
   componentDidMount() {

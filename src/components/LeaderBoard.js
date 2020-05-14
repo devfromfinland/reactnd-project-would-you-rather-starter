@@ -28,8 +28,8 @@ class LeaderBoard extends Component {
               <tbody>
                 { users && users.map((user) => 
                   <tr key={user.id}>
-                    <td>
-                      {/* <img src={user.avatarURL} className='profile-leaderboard' alt={user.name} /> */}
+                    <td className='text-left'>
+                      <img src={user.avatarURL} className='profile-leaderboard' alt={user.name} />
                       {user.name}
                     </td>
                     <td>{user.asked}</td>

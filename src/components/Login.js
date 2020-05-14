@@ -3,6 +3,7 @@ import { ListGroup } from 'react-bootstrap'
 import defaultProfilePhoto from '../img/tyler.jpg'
 import { connect } from 'react-redux'
 import { handleLogin } from '../actions/authedUser'
+import { handleInitialData } from '../actions/shared'
 import { withRouter } from 'react-router-dom'
 
 class Login extends Component {
@@ -34,7 +35,7 @@ class Login extends Component {
               onClick={this.onLogin} 
               className='text-left user-name'>
 
-              <img src={defaultProfilePhoto} alt={user.name} />
+              <img src={user.avatarURL} alt={user.name} />
               <p>{user.name}</p>
               
             </ListGroup.Item>

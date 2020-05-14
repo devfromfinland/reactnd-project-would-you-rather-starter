@@ -1,4 +1,4 @@
-import { saveQuestionAnswer, saveQuestion } from '../utils/api'
+import { saveQuestionAnswer, saveQuestion, getQuestions } from '../utils/api'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const SAVE_QUESTION = 'SAVE_QUESTION'
@@ -29,7 +29,6 @@ export function removeQuestionAction (question) {
 }
 
 export function saveAnswer (questionWithAnswer) {
-  console.log(' in action ', questionWithAnswer)
   return {
     type: SAVE_ANSWER,
     questionWithAnswer, // {authedUser, qid, answer}
@@ -64,6 +63,15 @@ export function handleSaveQuestion(question) {
         console.warn('error in saving the poll')
         dispatch(removeQuestionAction(question))
         alert('Error in saving the poll. Try again!')
+      })
+  }
+}
+
+export function retrieveQuestions() {
+  return (dispatch) => {
+    return getQuestions()
+      .then(({questions}) => {
+        dispatch(receiveQuestions(questions))
       })
   }
 }
