@@ -8,6 +8,7 @@ import LeaderBoard from './LeaderBoard'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import EmptyPage from './EmptyPage'
 import { connect } from 'react-redux'
+import LoadingBar from 'react-redux-loading'
 import { handleInitialData } from '../actions/shared'
 
 
@@ -18,27 +19,40 @@ class App extends Component {
   }
 
   render() {
+    let authedUser = this.props.authedUser
+    if (authedUser === undefined || authedUser === null) {
+      authedUser = ''
+    }
     return (
       <Router>
         <Fragment>
-          
-            { this.props.authedUser === '' && 
-              <Route path='*' render={(props) => <Login />} />
-            }
-
-            { this.props.authedUser !== '' &&
+          <LoadingBar />
+          { authedUser === '' && 
             <Fragment>
-              <Navigation authedUser={this.props.authedUser}/>
-              <Switch>
-                <Route path='/' exact component={Dashboard} />
-                <Route path='/questions/:id' component={QuestionPage} />
-                <Route path='/add' component={NewQuestion} />
-                <Route path='/leaderboard' component={LeaderBoard}/>
-                <Route component={EmptyPage}/>
-              </Switch>
+              {/* <LoadingBar /> */}
+              {this.props.loading
+                ? null
+                : <Route path='*' render={(props) => <Login />} />
+              }
             </Fragment>
+          }
+
+          { authedUser !== '' &&
+          <Fragment>
+            <Navigation authedUser={this.props.authedUser}/>
+            {/* <LoadingBar /> */}
+            {this.props.loading
+                ? null
+                : <Switch>
+                  <Route path='/' exact component={Dashboard} />
+                  <Route path='/questions/:id' component={QuestionPage} />
+                  <Route path='/add' component={NewQuestion} />
+                  <Route path='/leaderboard' component={LeaderBoard}/>
+                  <Route component={EmptyPage}/>
+                </Switch>
             }
-          
+          </Fragment>
+          }
         </Fragment>
       </Router>
     )
@@ -48,6 +62,7 @@ class App extends Component {
 function mapStateToProps({ authedUser }) {
   return {
     authedUser,
+    loading: authedUser === undefined || authedUser === null
   }
 }
 
