@@ -9,24 +9,16 @@ class Question extends Component {
   handleChangeOption = (e) => {
     e.preventDefault()
 
-    // do nothing if click on his/her own answer
-    const isActive = e.target.classList.contains('active')
-    console.log('isActive = ', isActive)
+    const { question, authedUser, dispatch } = this.props
+    let answer = e.target.dataset.option
+    let questionWithAnswer = {authedUser, qid: question.id, answer}
 
-    if (!isActive) {
-      const { question, authedUser, dispatch } = this.props
-      let answer = e.target.dataset.option
-      let questionWithAnswer = {authedUser, qid: question.id, answer}
+    // update to state and server
+    dispatch(handleSaveAnswer(questionWithAnswer))
 
-      // update to state and server
-      dispatch(handleSaveAnswer(questionWithAnswer))
-
-      // check if user is in the detailed page, then redirect to homepage
-      if (this.props.match && this.props.match.params.id) {
-        // this.props.history.push
-        this.props.history.push('/')
-        // console.log('to redirect ', this.props)
-      }
+    // check if user is in the detailed page, then redirect to homepage
+    if (this.props.match && this.props.match.params.id) {
+      this.props.history.push('/')
     }
   }
 
@@ -36,7 +28,6 @@ class Question extends Component {
 
   render() {
     const { type, question, authedUser } = this.props
-    // const { id, author, optionOne, optionTwo, timestamp } = this.props.question
     const countOne = question.optionOne.votes.length
     const countTwo = question.optionTwo.votes.length
     const countOnePercentage = countOne * 100 / (countOne + countTwo)
@@ -47,11 +38,10 @@ class Question extends Component {
       isQuestionPage = true
     }
 
-    // console.log(question)
-    if (type === 'answered') { // question has been answered, then highlight the answer
+    if (type === 'answered') { 
+      // question has been answered, then highlight the answer
       return (
         <div>
-          {/* <p>ID: {question.id}</p> */}
           Posted by {' '}
           <a href='/something'>@{question.author}</a>
           {' '} on {formatDate(question.timestamp)}
@@ -96,10 +86,10 @@ class Question extends Component {
           </ListGroup>
         </div>
       )
-    } else { // question has not been answered, then no need to highlight anything
+    } else {
+      // question has not been answered, then no need to highlight anything
       return (
         <div>
-          {/* <p>ID: {question.id}</p> */}
           Posted by {' '}
           <a href='/something'>@{question.author}</a>
           {' '} on {formatDate(question.timestamp)}

@@ -17,10 +17,7 @@ export function receiveQuestions (questions) {
 export function saveQuestionAction (question) {
   return {
     type: SAVE_QUESTION,
-    question,
-    // author,
-    // optionOneText,
-    // optionTwoText,
+    question, // {author, optionOneText, optionTwoText}
   }
 }
 
@@ -35,20 +32,14 @@ export function saveAnswer (questionWithAnswer) {
   console.log(' in action ', questionWithAnswer)
   return {
     type: SAVE_ANSWER,
-    questionWithAnswer,
-    // authedUser,
-    // qid,
-    // answer,
+    questionWithAnswer, // {authedUser, qid, answer}
   }
 }
 
 function removeAnswer(questionWithAnswer) {
   return {
     type: REMOVE_ANSWER,
-    questionWithAnswer,
-    // authedUser,
-    // qid,
-    // answer,
+    questionWithAnswer, // {authedUser, qid, answer }
   }
 }
 
@@ -66,7 +57,7 @@ export function handleSaveAnswer(questionWithAnswer) {
 }
 
 export function handleSaveQuestion(question) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     return saveQuestion(question)
       .then((result) => dispatch(saveQuestionAction(result)))
       .catch((e) => {

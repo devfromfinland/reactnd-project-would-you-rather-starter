@@ -12,18 +12,11 @@ import LeaderBoard from './LeaderBoard'
 
 class App extends Component {
   componentDidMount() {
-    // todo: reset authedUser
-    // console.log('should reset authedUser after mounted')
-
-    // todo: get current state
+    // get current state (default authedUser = '')
     this.props.dispatch(handleInitialData())
-    
-    // get current URL
-    // console.log('URL in App component: ', this.props)
   }
 
   render() {
-    // console.log('props App component, before render: ', this.props)
     return (
       <Router>
         <Fragment>
@@ -51,17 +44,8 @@ class App extends Component {
   }
 }
 
-// function mapStateToProps ({authedUser}, props) {
-//   return {
-//     ...props,
-//     authedUser,
-//   }
-// }
-
-function mapStateToProps( { authedUser }, props) {
-  
+function mapStateToProps({ authedUser }) {
   return {
-    ...props,
     authedUser,
   }
 }

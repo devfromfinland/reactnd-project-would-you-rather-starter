@@ -3,10 +3,8 @@ import { connect } from 'react-redux'
 import { Container, Row, Col, Table } from 'react-bootstrap'
 
 class LeaderBoard extends Component {
-  
   render() {
     const { users } = this.props
-    console.log(users)
 
     return (
       <Container className='text-center'>
@@ -44,7 +42,6 @@ class LeaderBoard extends Component {
           </Col>
         </Row>
       </Container>
-      
     )
   }
 }
@@ -60,6 +57,5 @@ function mapStateToProps ({users}) {
     users: proceedUsers.sort((a,b) => (b.asked + b.answered) - (a.asked + a.answered))
   }
 }
-
 
 export default connect(mapStateToProps)(LeaderBoard)

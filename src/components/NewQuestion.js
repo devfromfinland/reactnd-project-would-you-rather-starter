@@ -22,6 +22,7 @@ class NewQuestion extends Component {
 
     dispatch(handleSaveQuestion(question))
 
+    // redirect to Home page after submit
     this.setState(() => ({
       toHome: true
     }))

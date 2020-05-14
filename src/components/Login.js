@@ -11,10 +11,10 @@ class Login extends Component {
 
     const { dispatch } = this.props
 
-    // update state authedUser
+    // update authedUser state
     dispatch(handleLogin(e.currentTarget.id))
 
-    // todo: redirect to either the requested URL
+    // redirect to the requested URL
     const currentURL = this.props.match.url
     this.props.history.push(currentURL)
   }
@@ -28,9 +28,15 @@ class Login extends Component {
     
         <ListGroup className='login-panel'>
           { users && users.map((user) => 
-            <ListGroup.Item key={user.id} action id={user.id} onClick={this.onLogin} className='text-left user-name'>
+            <ListGroup.Item 
+              key={user.id} 
+              action id={user.id} 
+              onClick={this.onLogin} 
+              className='text-left user-name'>
+
               <img src={defaultProfilePhoto} alt={user.name} />
               <p>{user.name}</p>
+              
             </ListGroup.Item>
           )}
         </ListGroup>

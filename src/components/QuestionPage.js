@@ -2,14 +2,17 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Container, Row, Col } from 'react-bootstrap'
 import Question from './Question'
+import EmptyPage from './EmptyPage'
 
 class QuestionPage extends Component {
   isAnsweredQuestion = (question, authedUser) => {
-    if (question.optionOne.votes.length > 0 && question.optionOne.votes.find(user => user === authedUser)) {
+    if (question.optionOne.votes.length > 0 && 
+      question.optionOne.votes.find(user => user === authedUser)) {
       return true
     }
 
-    if (question.optionTwo.votes.length > 0 && question.optionTwo.votes.find(user => user === authedUser)) {
+    if (question.optionTwo.votes.length > 0 && 
+      question.optionTwo.votes.find(user => user === authedUser)) {
       return true
     }
 
@@ -17,13 +20,9 @@ class QuestionPage extends Component {
   }
 
   render () {
-    // console.log(this.props)
-
-    // todo: check if the link is valid (question is found). If not, then redirect to 404 page
+    // check if the link is valid (question is found). If not, then show 404 page
     if (this.props.question === undefined) {
-      return (
-        <div>To redirect to 404 page</div>
-      )
+      return <EmptyPage/>
     }
 
     const { authedUser, question } = this.props
@@ -36,8 +35,6 @@ class QuestionPage extends Component {
         : type = 'new'
     }
     
-    // const author = users.filter((a) => a.id === question.author)[0]
-
     return (
       <Container className='text-center mt-5'>
         <Row>
@@ -52,10 +49,15 @@ class QuestionPage extends Component {
         </Row>
         { type === 'answered' && 
           <Row className='mt-5'>
-            { question.optionOne.votes.length === 0 && <Col>
-              <h4>No one has voted for</h4>
-              <p className='option-detail'>"{question.optionOne.text}"</p>
-              </Col>}
+            {/* inform that there is no vote for optionOne */}
+            { question.optionOne.votes.length === 0 && 
+              <Col>
+                <h4>No one has voted for</h4>
+                <p className='option-detail'>"{question.optionOne.text}"</p>
+              </Col>
+            }
+
+            {/* show optionOne's votes */}
             { question.optionOne.votes.length > 0 && 
               <Col>
                 <h4>Users voted for</h4>
@@ -69,10 +71,16 @@ class QuestionPage extends Component {
                 </ul>
               </Col>
             }
-            { question.optionTwo.votes.length === 0 && <Col>
-              <h4>No one has voted for</h4>
-              <p className='option-detail'>"{question.optionTwo.text}"</p>
-              </Col>}
+
+            {/* inform that there is no vote for optionTwo */}
+            { question.optionTwo.votes.length === 0 && 
+              <Col>
+                <h4>No one has voted for</h4>
+                <p className='option-detail'>"{question.optionTwo.text}"</p>
+              </Col>
+            }
+
+            {/* show optionTwo's votes */}
             { question.optionTwo.votes.length > 0 && 
               <Col>
                 <h4>Users voted for</h4>
@@ -95,7 +103,6 @@ class QuestionPage extends Component {
 
 function mapStateToProps({authedUser, questions, users}, props) {
   return {
-    // id: props.match.params.id,
     authedUser,
     users: Object.values(users),
     question: Object.values(questions).filter((a) => a.id === props.match.params.id)[0],

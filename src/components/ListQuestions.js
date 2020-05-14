@@ -5,11 +5,13 @@ import { connect } from 'react-redux'
 
 class ListQuestions extends Component {
   isAnsweredQuestion = (question, authedUser) => {
-    if (question.optionOne.votes.length > 0 && question.optionOne.votes.find(user => user === authedUser)) {
+    if (question.optionOne.votes.length > 0 && 
+      question.optionOne.votes.find(user => user === authedUser)) {
       return true
     }
 
-    if (question.optionTwo.votes.length > 0 && question.optionTwo.votes.find(user => user === authedUser)) {
+    if (question.optionTwo.votes.length > 0 && 
+      question.optionTwo.votes.find(user => user === authedUser)) {
       return true
     }
 
@@ -45,7 +47,8 @@ class ListQuestions extends Component {
               <h3>Would you rather?</h3>
             </Col>
           </Row>
-          { questions && questions.filter((item) => !this.isAnsweredQuestion(item, authedUser)).map((question) => 
+          { questions && questions.filter((item) => 
+            !this.isAnsweredQuestion(item, authedUser)).map((question) => 
             <Row className='mb-5' key={question.id}>
               <Col>
                 <Question question={question} type={type}/>
