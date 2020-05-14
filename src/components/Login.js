@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { ListGroup } from 'react-bootstrap'
-import defaultProfilePhoto from '../img/tyler.jpg'
 import { connect } from 'react-redux'
 import { handleLogin } from '../actions/authedUser'
-import { handleInitialData } from '../actions/shared'
 import { withRouter } from 'react-router-dom'
 
 class Login extends Component {
