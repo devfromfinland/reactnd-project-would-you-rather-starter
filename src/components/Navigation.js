@@ -17,6 +17,7 @@ class Navigation extends Component {
         <Navbar.Collapse>
           <NavLink to='/' exact className='nav-link' activeClassName='active'>Home</NavLink>
           <NavLink to='/add' className='nav-link' activeClassName='active'>Post a question</NavLink>
+          <NavLink to='/leaderboard' className='nav-link' activeClassName='active'>Leaderboard</NavLink>
         </Navbar.Collapse>
         
         <Navbar.Collapse className='justify-content-end'>

@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import EmptyPage from './EmptyPage'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
+import LeaderBoard from './LeaderBoard'
 
 class App extends Component {
   componentDidMount() {
@@ -30,15 +31,10 @@ class App extends Component {
             { this.props.authedUser !== '' &&
               <Fragment>
                 <Navigation authedUser={this.props.authedUser}/>
-                <Route path='/' exact>
-                  <Dashboard />
-                </Route>
-                <Route path='/questions/:id' component={QuestionPage}>
-                  {/* <QuestionPage /> */}
-                </Route>
-                <Route path='/add'>
-                  <NewQuestion />
-                </Route>
+                <Route path='/' exact component={Dashboard} />
+                <Route path='/questions/:id' component={QuestionPage} />
+                <Route path='/add' component={NewQuestion} />
+                <Route path='/leaderboard' component={LeaderBoard}/>
                 {/* <Route path='*'>
                   <EmptyPage />
                 </Route> */}

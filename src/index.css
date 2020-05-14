@@ -75,3 +75,29 @@ code {
 .option-detail {
   font-style: italic;
 }
+
+.active {
+  font-weight: bold;
+  color: green;
+}
+
+.nav-link:hover {
+  font-weight: bold;
+  color: green;
+  text-decoration: none;
+}
+
+.profile-leaderboard {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  float: left;
+  margin-left: 3rem;
+  margin-right: 2rem;
+}
+
+.thead-dark {
+  background-color: green;
+  color: white;
+  font-weight: bold;
+}
