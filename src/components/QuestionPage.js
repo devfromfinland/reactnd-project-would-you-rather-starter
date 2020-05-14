@@ -26,7 +26,7 @@ class QuestionPage extends Component {
       )
     }
 
-    const { authedUser, users, question } = this.props
+    const { authedUser, question } = this.props
     let { type } = this.props
 
     if (type === undefined) {

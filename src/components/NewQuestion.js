@@ -29,13 +29,13 @@ class NewQuestion extends Component {
 
   render() {
     if (this.state.toHome === true) return <Redirect to='/' />
-    
+
     return (
       <form onSubmit={this.handleSubmit}>
         <Container className='mt-5 text-center'>
           <Row>
             <Col>
-              <h3>Would you rather...</h3>
+              <h3>Would you rather...?</h3>
             </Col>
           </Row>
           <Row className='mt-4 mb-3'>

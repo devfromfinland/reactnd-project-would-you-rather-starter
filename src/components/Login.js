@@ -2,19 +2,10 @@ import React, { Component } from 'react'
 import { ListGroup } from 'react-bootstrap'
 import defaultProfilePhoto from '../img/tyler.jpg'
 import { connect } from 'react-redux'
-import { handleLogin, setAuthedUser } from '../actions/authedUser'
+import { handleLogin } from '../actions/authedUser'
 import { withRouter } from 'react-router-dom'
-// import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
-  state = {
-    redirect: false
-  }
-
-  componentDidMount() {
-    // console.log('redirect to ', this.props.match.url)
-  }
-
   onLogin = (e) => {
     e.preventDefault()
 
@@ -23,23 +14,13 @@ class Login extends Component {
     // update state authedUser
     dispatch(handleLogin(e.currentTarget.id))
 
-    // todo: redirect to either Dashboard or requested URL
+    // todo: redirect to either the requested URL
     const currentURL = this.props.match.url
     this.props.history.push(currentURL)
-    // (currentURL === '/')
-    //   ? this.props.history.push(`/dashboard`)
-    //   : this.props.history.push(currentURL)
-    
-    // console.log('redirect to ', this.props.match.url)
   }
 
   render() {
     const { users } = this.props
-    // console.log(this.props)
-
-    // if (this.state.redirect === true) {
-    //   return <Redirect to={this.props.match.url} />
-    // }
 
     return (
       <div className='text-center mt-5'>
@@ -60,7 +41,6 @@ class Login extends Component {
 
 function mapStateToProps ({users}) {
   return {
-    // empty
     users: Object.values(users)
   }
 }

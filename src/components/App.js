@@ -4,7 +4,7 @@ import Dashboard from './DashBoard'
 import NewQuestion from './NewQuestion'
 import QuestionPage from './QuestionPage'
 import Navigation from './Navigation'
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import EmptyPage from './EmptyPage'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
@@ -19,35 +19,49 @@ class App extends Component {
     this.props.dispatch(handleInitialData())
     
     // get current URL
-    // this.props.match.url
+    // console.log('URL in App component: ', this.props)
   }
 
   render() {
+    // console.log('props App component, before render: ', this.props)
     return (
       <Router>
         <Fragment>
-          {/* <Switch> */}
-            { this.props.authedUser === '' && <Login />} 
+          
+            { this.props.authedUser === '' && 
+              <Route path='*' render={(props) => <Login />} />
+            }
+
             { this.props.authedUser !== '' &&
-              <Fragment>
-                <Navigation authedUser={this.props.authedUser}/>
+            <Fragment>
+              <Navigation authedUser={this.props.authedUser}/>
+              <Switch>
                 <Route path='/' exact component={Dashboard} />
                 <Route path='/questions/:id' component={QuestionPage} />
                 <Route path='/add' component={NewQuestion} />
                 <Route path='/leaderboard' component={LeaderBoard}/>
-                {/* <Route path='*'>
-                  <EmptyPage />
-                </Route> */}
-              </Fragment>
+                <Route component={EmptyPage}/>
+              </Switch>
+            </Fragment>
             }
-          {/* </Switch> */}
+          
         </Fragment>
       </Router>
     )
   }
 }
-function mapStateToProps ({authedUser}) {
+
+// function mapStateToProps ({authedUser}, props) {
+//   return {
+//     ...props,
+//     authedUser,
+//   }
+// }
+
+function mapStateToProps( { authedUser }, props) {
+  
   return {
+    ...props,
     authedUser,
   }
 }
