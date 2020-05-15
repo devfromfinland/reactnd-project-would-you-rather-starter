@@ -11,9 +11,9 @@ npm install
 npm start
 ```
 
-## Features checked with the `Rubics file` [Link](https://review.udacity.com/#!/rubrics/1567/view)
+## Features checked with the [Rubics](https://review.udacity.com/#!/rubrics/1567/view)
 
-Checklist:
+:white_check_mark: **Checklist:** :white_check_mark:
 - [x] Is the application easy to install and start?
 - [x] Does the application include README with clear installation and launch instructions?
 - [x] Does the application have a way to log in and log out?
