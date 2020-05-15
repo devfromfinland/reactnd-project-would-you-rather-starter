@@ -11,8 +11,7 @@ npm install
 npm start
 ```
 
-## Features checked with the `Rubics file`
-[Rubics](https://review.udacity.com/#!/rubrics/1567/view)
+## Features checked with the `Rubics file` [Link](https://review.udacity.com/#!/rubrics/1567/view)
 
 Checklist:
 - [x] Is the application easy to install and start?
