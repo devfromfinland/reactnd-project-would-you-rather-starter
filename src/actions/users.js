@@ -15,5 +15,8 @@ export function retrieveUsers() {
       .then(({users}) => {
         dispatch(receiveUsers(users))
       })
+      .catch((e) => {
+        console.warn('error in getting the users from server')
+      })
   }
 }

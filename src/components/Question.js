@@ -6,6 +6,10 @@ import { handleSaveAnswer } from '../actions/questions'
 import { Link, withRouter } from 'react-router-dom'
 
 class Question extends Component {
+  state = {
+    refresh: false
+  }
+
   handleChangeOption = (e) => {
     e.preventDefault()
 
@@ -18,7 +22,10 @@ class Question extends Component {
 
     // check if user is in the detailed page, then redirect to homepage
     if (this.props.match && this.props.match.params.id) {
-      this.props.history.push('/')
+      // this.props.history.push('/')
+      this.setState(() => ({
+        refresh: true
+      }))
     }
   }
 
@@ -27,7 +34,9 @@ class Question extends Component {
   }
 
   render() {
-    const { type, question, authedUser, users } = this.props
+    
+    const { question, authedUser, users } = this.props
+    let { type } = this.props
     const countOne = question.optionOne.votes.length
     const countTwo = question.optionTwo.votes.length
     const countOnePercentage = (countOne * 100 / (countOne + countTwo)).toFixed(2)
@@ -36,6 +45,12 @@ class Question extends Component {
     let isQuestionPage = false
     if (this.props.match && this.props.match.params.id) {
       isQuestionPage = true
+
+      // if a user answer a question in the QuestionPage, then refresh and show results
+      if (this.state.refresh === true) {
+        type = 'answered'
+        // should change the type of QuestionPage component as well
+      }
     }
 
     if (type === 'answered') { 

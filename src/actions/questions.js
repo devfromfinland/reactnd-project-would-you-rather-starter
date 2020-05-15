@@ -73,5 +73,8 @@ export function retrieveQuestions() {
       .then(({questions}) => {
         dispatch(receiveQuestions(questions))
       })
+      .catch((e) => {
+        console.warn('error in getting the questions from server')
+      })
   }
 }

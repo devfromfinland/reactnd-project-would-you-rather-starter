@@ -16,5 +16,8 @@ export function handleInitialData () {
         dispatch(setAuthedUser(AUTHED_ID))
         dispatch(hideLoading())
       })
+      .catch((e) => {
+        console.warn('error in handling initial data')
+      })
   }
 }
