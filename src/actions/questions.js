@@ -1,4 +1,5 @@
 import { saveQuestionAnswer, saveQuestion, getQuestions } from '../utils/api'
+import { handleSaveUserQuestion } from './users'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const SAVE_QUESTION = 'SAVE_QUESTION'
@@ -58,7 +59,11 @@ export function handleSaveAnswer(questionWithAnswer) {
 export function handleSaveQuestion(question) {
   return (dispatch) => {
     return saveQuestion(question)
-      .then((result) => dispatch(saveQuestionAction(result)))
+      .then((result) => {
+        dispatch(saveQuestionAction(result))
+        // console.log('result: ', result)
+        dispatch(handleSaveUserQuestion(result))
+      })
       .catch((e) => {
         console.warn('error in saving the poll')
         dispatch(removeQuestionAction(question))
