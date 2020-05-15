@@ -30,9 +30,7 @@ class QuestionPage extends Component {
 
     if (type === undefined) {
       // recheck the question if it is new or already answered
-      (this.isAnsweredQuestion(question, authedUser))
-        ? type = 'answered'
-        : type = 'new'
+      type = this.isAnsweredQuestion(question, authedUser) ? 'answered' : 'new'
     }
     
     return (

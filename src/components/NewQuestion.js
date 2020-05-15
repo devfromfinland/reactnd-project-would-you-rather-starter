@@ -17,7 +17,7 @@ class NewQuestion extends Component {
 
     const author = this.props.authedUser
     const { optionOneText, optionTwoText } = this.state
-    const question = {author, optionOneText, optionTwoText}
+    const question = { author, optionOneText, optionTwoText }
     const { dispatch } = this.props
 
     dispatch(handleSaveQuestion(question))
