@@ -31,4 +31,4 @@ npm start
 - [x] Does application state update correctly?
 - [x] Does the architecture of the application make sense?
 - [x] Loading bar
-- [ ] Does the application interact with the backend correctly? (backend's functions doesn't update new data from user)
+- [ ] Does the application interact with the backend correctly? **(The provided backend file doesn't update backend data though)**
