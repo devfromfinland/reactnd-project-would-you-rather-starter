@@ -3,6 +3,7 @@ import { ListGroup } from 'react-bootstrap'
 import { formatDate } from '../utils/helpers'
 import { connect } from 'react-redux'
 import { handleSaveAnswer } from '../actions/questions'
+import { handleSaveUserAnswer } from '../actions/users'
 import { Link, withRouter } from 'react-router-dom'
 
 class Question extends Component {
@@ -17,8 +18,11 @@ class Question extends Component {
     let answer = e.target.dataset.option
     let questionWithAnswer = {authedUser, qid: question.id, answer}
 
-    // update to state and server
+    // update the question in state and server
     dispatch(handleSaveAnswer(questionWithAnswer))
+
+    // update the user's answer in server (fix Leaderboard bug)
+    dispatch(handleSaveUserAnswer(questionWithAnswer))
 
     // check if user is in the detailed page, then redirect to homepage
     if (this.props.match && this.props.match.params.id) {

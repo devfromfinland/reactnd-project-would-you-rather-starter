@@ -6,6 +6,12 @@ class LeaderBoard extends Component {
   render() {
     const { users } = this.props
 
+    let proceedUsers = [...users]
+      .map((user) => ({...user, 'answered': Object.values(user.answers).length, 'asked': user.questions.length}))
+      .sort((a, b) => (
+      b.answered + b.asked - a.answered - a.asked
+    ))
+
     return (
       <Container className='text-center'>
         <Row>
@@ -26,7 +32,7 @@ class LeaderBoard extends Component {
                 </tr>
               </thead>
               <tbody>
-                { users && users.map((user) => 
+                { proceedUsers && proceedUsers.map((user) => 
                   <tr key={user.id}>
                     <td className='text-left'>
                       <img src={user.avatarURL} className='profile-leaderboard' alt={user.name} />
@@ -47,14 +53,8 @@ class LeaderBoard extends Component {
 }
 
 function mapStateToProps ({users}) {
-  let proceedUsers = Object.values(users).map((user) => {
-    user.answered = Object.values(user.answers).length
-    user.asked = user.questions.length
-    return user
-  })
-
   return {
-    users: proceedUsers.sort((a,b) => (b.asked + b.answered) - (a.asked + a.answered))
+    users: Object.values(users)
   }
 }
 

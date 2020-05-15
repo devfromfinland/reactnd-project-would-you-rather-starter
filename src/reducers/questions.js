@@ -16,6 +16,9 @@ export default function questions (state = {}, action) {
     case SAVE_ANSWER:
       const { qid, answer, authedUser } = action.questionWithAnswer
       let otherAnswer = answer === 'optionOne' ? 'optionTwo' : 'optionOne'
+
+      // console.log('state in Questions reducer: ', state)
+
       return {
         ...state,
         [qid]: {
