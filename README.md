@@ -1,6 +1,12 @@
 # Would You Rather Project
 
-This is the project #2 of the course Udacity's React nanodegree. This project focuses on React/Redux.
+This is the project #2 of the course Udacity's React nanodegree. This project focuses on React/Redux state management to build a 'would you rather ...' game.
+
+**The game's features**
+- Answer 'would you rather...' questions
+- Create new 'would you rather...' questions
+- Check leaderboard to see ranking from all users
+
 Initial code retrieve the `_DATA.js` file as starter. This file acts as a backend server. However, it doesn't alter the database so the app will always start with its initial data.
 
 Project is create by using [Create React App](https://github.com/facebook/create-react-app)
